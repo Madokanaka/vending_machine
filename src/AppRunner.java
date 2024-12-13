@@ -11,7 +11,11 @@ public class AppRunner {
 
     private final CoinAcceptor coinAcceptor;
 
+    private final CardAcceptor cardAcceptor;
+
     private static boolean isExit = false;
+
+    private PaymentAcceptor paymentAcceptor;
 
     private AppRunner() {
         products.addAll(new Product[]{
@@ -23,6 +27,7 @@ public class AppRunner {
                 new Pistachios(ActionLetter.G, 130)
         });
         coinAcceptor = new CoinAcceptor(100);
+        cardAcceptor = new CardAcceptor(300);
     }
 
     public static void run() {
@@ -33,6 +38,7 @@ public class AppRunner {
     }
 
     private void startSimulation() {
+        choosePaymentMethod();
         print("В автомате доступны:");
         showProducts(products);
 
@@ -102,5 +108,31 @@ public class AppRunner {
 
     private void print(String msg) {
         System.out.println(msg);
+    }
+
+    private void choosePaymentMethod() {
+        boolean validChoice = false;
+        while (!validChoice) {
+            print("Выберите способ пополнения баланса: ");
+            print(" 1 - Монеты");
+            print(" 2 - Кредитная карта");
+            String choice = fromConsole().trim();
+
+            switch (choice) {
+                case "1":
+                    paymentAcceptor = coinAcceptor;
+                    validChoice = true;
+                    print("Вы выбрали пополнение монетами.");
+                    break;
+                case "2":
+                    paymentAcceptor = cardAcceptor;
+                    validChoice = true;
+                    print("Вы выбрали пополнение картой.");
+                    break;
+                default:
+                    print("Неверный выбор. Попробуйте еще раз.");
+                    break;
+            }
+        }
     }
 }
