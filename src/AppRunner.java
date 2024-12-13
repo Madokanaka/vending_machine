@@ -13,6 +13,8 @@ public class AppRunner {
 
     private final CardAcceptor cardAcceptor;
 
+    private final CashAcceptor cashAcceptor;
+
     private static boolean isExit = false;
 
     private PaymentAcceptor paymentAcceptor;
@@ -28,6 +30,7 @@ public class AppRunner {
         });
         coinAcceptor = new CoinAcceptor(100);
         cardAcceptor = new CardAcceptor(300);
+        cashAcceptor = new CashAcceptor(300);
     }
 
     public static void run() {
@@ -114,6 +117,7 @@ public class AppRunner {
             print("Выберите способ оплаты: ");
             print(" 1 - Монеты");
             print(" 2 - Кредитная карта");
+            print(" 3 - Наличка");
             String choice = fromConsole().trim();
 
             switch (choice) {
@@ -123,6 +127,10 @@ public class AppRunner {
                     break;
                 case "2":
                     paymentAcceptor = cardAcceptor;
+                    validChoice = true;
+                    break;
+                case "3":
+                    paymentAcceptor = cashAcceptor;
                     validChoice = true;
                     break;
                 default:
