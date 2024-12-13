@@ -1,0 +1,17 @@
+git status - использовал, чтобы узнать какие файлы не добавлены для коммита
+git add src/model/PaymentAcceptor.java - использовал, чтобы подготовить PaymentAcceptor для коммита
+git commit -m "" использовал, чтобы закомиттить измененные файлы
+git add * - использовал, чтобы подготовить все измененные файлы для коммита(CoinAcceptor.java, PaymentAcceptor)
+git commit -m "Implemented the methods of Payment Acceptor in the CoinAcceptor" - закомиттил изменение в CoinAcceptor
+git add src/model/CardAcceptor - подготовил новый класс CardAcceptor
+git commit -m "Created CardPayment class" - закомиттил новый класс
+git add src/model/CardAcceptor.java - подготовил измененный класс для коммита
+git commit -m "Changed the constructor of CardAcceptor" - закомиттил его
+git add src/AppRunner.java - подготовил измененный класс для коммита
+git commit -m "Created a method to choose PaymentMethod" - закомиттил его
+git add src/ - подготовил изменения в классах AppRunner, PaymentAcceptor
+git commit -m "Added get and set methods to Interface PaymentMethod" - закомиттил его
+git add src/AppRunner.java - подготовил измененный класс, готовый для работы с несколькими видами оплаты
+git commit -m "Created paymentMethod variable to work with every paymentMethod" закомиттил его
+git add commands.txt подготовил этот файл, где описываются команды, для коммита
+git commit -m "Created commands.txt with the description of all the git commands"
