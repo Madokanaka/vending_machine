@@ -39,10 +39,9 @@ public class AppRunner {
 
     private void startSimulation() {
         choosePaymentMethod();
+        paymentAcceptor.getInfo();
         print("В автомате доступны:");
         showProducts(products);
-
-        print("Монет на сумму: " + paymentAcceptor.getAmount());
 
         UniversalArray<Product> allowProducts = new UniversalArrayImpl<>();
         allowProducts.addAll(getAllowedProducts().toArray());
@@ -53,7 +52,7 @@ public class AppRunner {
     private UniversalArray<Product> getAllowedProducts() {
         UniversalArray<Product> allowProducts = new UniversalArrayImpl<>();
         for (int i = 0; i < products.size(); i++) {
-            if (coinAcceptor.getAmount() >= products.get(i).getPrice()) {
+            if (paymentAcceptor.getAmount() >= products.get(i).getPrice()) {
                 allowProducts.add(products.get(i));
             }
         }
@@ -66,14 +65,13 @@ public class AppRunner {
         print(" h - Выйти");
         String action = fromConsole().substring(0, 1);
         if ("a".equalsIgnoreCase(action)) {
-            coinAcceptor.setAmount(coinAcceptor.getAmount() + 10);
-            print("Вы пополнили баланс на 10");
+            paymentAcceptor.acceptPayment();
             return;
         }
         try {
             for (int i = 0; i < products.size(); i++) {
                 if (products.get(i).getActionLetter().equals(ActionLetter.valueOf(action.toUpperCase()))) {
-                    coinAcceptor.setAmount(coinAcceptor.getAmount() - products.get(i).getPrice());
+                    paymentAcceptor.setAmount(paymentAcceptor.getAmount() - products.get(i).getPrice());
                     print("Вы купили " + products.get(i).getName());
                     break;
                 }
@@ -113,7 +111,7 @@ public class AppRunner {
     private void choosePaymentMethod() {
         boolean validChoice = false;
         while (!validChoice) {
-            print("Выберите способ пополнения баланса: ");
+            print("Выберите способ оплаты: ");
             print(" 1 - Монеты");
             print(" 2 - Кредитная карта");
             String choice = fromConsole().trim();
@@ -122,12 +120,10 @@ public class AppRunner {
                 case "1":
                     paymentAcceptor = coinAcceptor;
                     validChoice = true;
-                    print("Вы выбрали пополнение монетами.");
                     break;
                 case "2":
                     paymentAcceptor = cardAcceptor;
                     validChoice = true;
-                    print("Вы выбрали пополнение картой.");
                     break;
                 default:
                     print("Неверный выбор. Попробуйте еще раз.");
