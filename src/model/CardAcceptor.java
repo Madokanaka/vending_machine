@@ -6,8 +6,8 @@ public class CardAcceptor implements PaymentAcceptor {
 
     private int amount;
 
-    public CardAcceptor() {
-        this.amount = 0;
+    public CardAcceptor(int amount) {
+        this.amount = amount;
     }
 
     public int getAmount() {
@@ -39,7 +39,7 @@ public class CardAcceptor implements PaymentAcceptor {
 
                 setAmount(amount + sum);
                 isIllegalValue = false;
-                
+
             } catch (NumberFormatException e) {
                 System.out.println("Ошибка: Введите числовое значение для суммы.");
             } catch (IllegalArgumentException e) {
