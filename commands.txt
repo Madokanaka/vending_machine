@@ -14,4 +14,5 @@ git commit -m "Added get and set methods to Interface PaymentMethod" - зако�
 git add src/AppRunner.java - подготовил измененный класс, готовый для работы с несколькими видами оплаты
 git commit -m "Created paymentMethod variable to work with every paymentMethod" закомиттил его
 git add commands.txt подготовил этот файл, где описываются команды, для коммита
-git commit -m "Created commands.txt with the description of all the git commands"
+git commit -m "Created commands.txt with the description of all the git commands I used" - закомиттил его
+
